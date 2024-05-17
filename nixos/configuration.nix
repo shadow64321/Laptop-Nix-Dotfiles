@@ -11,7 +11,7 @@
     ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = false;
+  boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.grub = { 
     enable = false;
@@ -23,14 +23,14 @@
   };
 
   # I use zsh btw... wait lol no I don't
-  # environment.shells = with pkgs; [ bash zsh fish ];
-  # users.defaultUserShell = pkgs.zsh;
-  # programs.zsh.enable = true;
+  environment.shells = with pkgs; [ bash zsh fish ];
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
 
   # I use fish... maybe you have heard of it
-  environment.shells = with pkgs; [ bash zsh fish ];
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
+  # environment.shells = with pkgs; [ bash zsh fish ];
+  # programs.fish.enable = true;
+  # users.defaultUserShell = pkgs.fish;
 
   networking.hostName = "Jeremiah"; # Define your hostname.
 
@@ -45,24 +45,54 @@
   time.timeZone = "Australia/Melbourne";
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_AU.UTF-8";
+  # i18n.defaultLocale = "en_AU.UTF-8";
+  i18n.defaultLocale = "ko_KR.UTF-8";
+
+  #i18n.extraLocaleSettings = {
+  #  LANGUAGE = "en_AU.UTF-8";
+  #  LC_ALL = "en_AU.UTF-8";
+  #  LC_ADDRESS = "en_AU.UTF-8";
+  #  LC_IDENTIFICATION = "en_AU.UTF-8";
+  #  LC_MEASUREMENT = "en_AU.UTF-8";
+  #  LC_MONETARY = "en_AU.UTF-8";
+  #  LC_NAME = "en_AU.UTF-8";
+  #  LC_NUMERIC = "en_AU.UTF-8";
+  #  LC_PAPER = "en_AU.UTF-8";
+  #  LC_TELEPHONE = "en_AU.UTF-8";
+  #  LC_TIME = "en_AU.UTF-8";
+  #};
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "en_AU.UTF-8";
-    LC_IDENTIFICATION = "en_AU.UTF-8";
-    LC_MEASUREMENT = "en_AU.UTF-8";
-    LC_MONETARY = "en_AU.UTF-8";
-    LC_NAME = "en_AU.UTF-8";
-    LC_NUMERIC = "en_AU.UTF-8";
-    LC_PAPER = "en_AU.UTF-8";
-    LC_TELEPHONE = "en_AU.UTF-8";
-    LC_TIME = "en_AU.UTF-8";
+    # LANGUAGE = "ko_KR.UTF-8";
+    # LC_ALL = "ko_KR.UTF-8";
+    LC_ADDRESS = "ko_KR.UTF-8";
+    LC_IDENTIFICATION = "ko_KR.UTF-8";
+    LC_MEASUREMENT = "ko_KR.UTF-8";
+    LC_MONETARY = "ko_KR.UTF-8";
+    LC_NAME = "ko_KR.UTF-8";
+    LC_NUMERIC = "ko_KR.UTF-8";
+    LC_PAPER = "ko_KR.UTF-8";
+    LC_TELEPHONE = "ko_KR.UTF-8";
+    LC_TIME = "ko_KR.UTF-8";
   };
+  
+  #i18n.supportedLocales = [
+    # "ko_KR.UTF-8/UTF-8"
+    #"en_AU.UTF-8/UTF-8"
+    #"ja_JP.UTF-8/UTF-8"
+  #];
 
-#   i18n.supportedLocales = [
-#     "ko_KR.UTF-8/UTF-8"
-#     "ja_JP.UTF-8/UTF-8"
-#   ];
+  # i18n.inputMethod.enabled = "ibus";
+  # i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ hangul mozc ];
+
+  i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+          fcitx5-mozc
+  	  fcitx5-hangul
+          fcitx5-gtk
+      ];
+  };
 
   # Fonts
   fonts.packages = with pkgs; [
@@ -140,6 +170,8 @@
 
   # Enables bluetooth
   hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  # services.blueman.enable = true; # if bluetooth ctl doesn't work
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -202,11 +234,13 @@
      # davinci-resolve-studio
      # davinci-resolve
      gimp
-     grub2_efi
+     # grub2_efi
      logseq
+     discord
 
 
      # Programming
+     gcc
      rustup
      go
      python3
@@ -230,7 +264,7 @@
      # Gaming
      steam
      lutris
-     asusctl
+     # asusctl
      
 
      # Libre 
@@ -277,6 +311,8 @@
      feh # wallpaper setter + image viewer
      # unimatrix
      cbonsai
+     zoxide # Better cd
+     fzf # Fuzzyfinding for zoxide
 
 
      # Bspwm
@@ -292,6 +328,11 @@
      scrot
      brightnessctl
      betterlockscreen
+
+     # Ani-Cli
+     ffmpeg
+     mpv
+     aria2
 
      # Laptop Stuff
      tlp # For best battery life
@@ -309,11 +350,12 @@
 
 
      # Multi-lingual Support
-#      fcitx5
-#      fcitx5-configtool
-#      fcitx5-hangul
-#      fcitx5-mozc
-#      fcitx5-gtk
+     fcitx5
+     fcitx5-configtool
+     libime
+     # fcitx5-hangul
+     # fcitx5-mozc
+     # fcitx5-gtk
 
 
      # Info-Sec
@@ -342,6 +384,7 @@
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "steam"
+    "discord"
     "steam-original"
     "steam-run"
     "davinci-resolve"
