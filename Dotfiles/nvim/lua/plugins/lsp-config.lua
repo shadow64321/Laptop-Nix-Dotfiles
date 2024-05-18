@@ -9,7 +9,7 @@ return {
     "williamboman/mason-lspconfig.nvim",
     config = function()
       require("mason-lspconfig").setup({
-        ensure_installed = { "lua_ls", "clangd", "cmake", "gopls", "autotools_ls", "markdown_oxide", "taplo", "lemminx", "hydra_lsp", "zls" }
+        ensure_installed = { "lua_ls", "clangd", "cmake", "gopls", "autotools_ls", "taplo", "lemminx", "hydra_lsp", "zls" }
       })
     end
   },

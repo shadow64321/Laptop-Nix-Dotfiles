@@ -5,10 +5,11 @@
 sxhkd -c "$HOME/.config/sxhkd/sxhkdrc" &
 bsp-layout set tall &
 pkill picom &
-# picom &
-picom --experimental-backends &
+picom &
+#picom --experimental-backends &
 # polybar &
-
+# ibus start &
+fcitx5 &
 # Set Theme
 bash ~/.config/bspwm/set-Theme.sh &
 
@@ -24,11 +25,13 @@ bspc config borderless_monocle true &
 bspc config gapless_monocle true &
 
 bspc config pointer_follows_monitor true &
-bspc config focus_follows_pointer true &
+# bspc config focus_follows_pointer true &
 
 # $HOME/.fehbg &
 # Rules
 bspc rule -a Vlc state=floating follow=on &
+
+syncthing &
 
 sleep 2
 polybar
