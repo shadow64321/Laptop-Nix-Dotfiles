@@ -40,6 +40,27 @@ set showmatch
 " remove trailing whitespace from Python and files "
 autocmd BufWritePre *.py :%s/\s\+$//e
 
+" Status Line "
+set laststatus=2
+
+"Left side"
+set statusline+=\ [
+set statusline+=\ %F
+set statusline+=\ %m
+set statusline+=\ ]
+
+set statusline+=%=
+
+"Right Side"
+set statusline+=\ <<
+set statusline+=\ Line:\ %l,
+set statusline+=\ Col:\ %c
+set statusline+=\ >>
+
+
+
+
+
 " enable color themes "
 if !has('gui_running')
 	set t_Co=256
@@ -202,6 +223,9 @@ hi link StatusLineTerm StatusLine
 hi link StatusLineTermNC StatusLineNC
 hi link Terminal Normal
 hi link Ignore Comment
+
+" Transparent BG
+hi Normal guibg=NONE ctermbg=NONE
 
 " Set terminal colors for playing well with plugins like fzf
 let g:terminal_ansi_colors = [
