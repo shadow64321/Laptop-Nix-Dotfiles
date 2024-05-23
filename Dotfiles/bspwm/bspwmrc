@@ -9,7 +9,7 @@ picom &
 #picom --experimental-backends &
 # polybar &
 # ibus start &
-fcitx5 &
+# fcitx5 &
 # Set Theme
 bash ~/.config/bspwm/set-Theme.sh &
 

@@ -46,6 +46,8 @@ super + shift + o
 super + shift + u
   feh --bg-fill ~/.config/hypr/Wallpapers/59.png && bash ~/.config/polybar/scripts/pywal.sh ~/.config/hypr/Wallpapers/59.png
 
+super + shift + y
+  feh --bg-fill ~/.config/hypr/Wallpapers/'Alex Terrible'.jpg && bash ~/.config/polybar/scripts/pywal.sh ~/.config/hypr/Wallpapers/'Alex Terrible'.jpg
 
 # Rofi
 super + @space
