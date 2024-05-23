@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./shell.nix
     ];
 
   # Bootloader.
@@ -82,17 +83,17 @@
     #"ja_JP.UTF-8/UTF-8"
   #];
 
-  # i18n.inputMethod.enabled = "ibus";
-  # i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ hangul mozc ];
+  i18n.inputMethod.enabled = "ibus";
+  i18n.inputMethod.ibus.engines = with pkgs.ibus-engines; [ hangul ];
 
-  i18n.inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-          fcitx5-mozc
-  	  fcitx5-hangul
-          fcitx5-gtk
-      ];
-  };
+  #i18n.inputMethod = {
+  #    enabled = "fcitx5";
+  #    fcitx5.addons = with pkgs; [
+  #        fcitx5-mozc
+  #	  fcitx5-hangul
+  #        fcitx5-gtk
+  #    ];
+  #};
 
   # Fonts
   fonts.packages = with pkgs; [
@@ -144,7 +145,7 @@
   
   # Configure keymap in X11
   services.xserver = {
-    layout = "au";
+    layout = "kr";
     xkbVariant = "";
     libinput.touchpad.naturalScrolling = true;
   };
@@ -237,14 +238,22 @@
      # grub2_efi
      logseq
      discord
+     mangal
 
 
      # Programming
      gcc
+     clang
+     clang-tools
      rustup
-     go
+     # go
      python3
-     zig
+     # zig
+     # SDL2
+     # glew
+     # glfw
+     cmake
+     gnumake
      
 
      # Music
@@ -259,6 +268,8 @@
      # Virtulisation
      qemu
      virt-manager
+     libguestfs
+     libvirt
 
 
      # Gaming
@@ -290,7 +301,8 @@
      python3
      # Pip???
      starship
-     # tmux
+     tmux
+     zellij
      fish
      # oh-my-fish
 
@@ -350,8 +362,8 @@
 
 
      # Multi-lingual Support
-     fcitx5
-     fcitx5-configtool
+     # fcitx5
+     # fcitx5-configtool
      libime
      # fcitx5-hangul
      # fcitx5-mozc
