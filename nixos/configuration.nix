@@ -241,6 +241,9 @@
      mangal
 
 
+     # Audio Production
+     reaper
+
      # Programming
      gcc
      clang
@@ -263,6 +266,8 @@
      blanket
      musikcube
      spotdl
+
+     bottles
 
 
      # Virtulisation
@@ -340,6 +345,7 @@
      scrot
      brightnessctl
      betterlockscreen
+     dunst
 
      # Ani-Cli
      ffmpeg
